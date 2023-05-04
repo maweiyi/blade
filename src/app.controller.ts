@@ -5,12 +5,7 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
-  @Get('/index')
+  @Get('/')
   @Render('index')
   index(): any {
     const viewData = [];
@@ -19,14 +14,15 @@ export class AppController {
       viewData: viewData,
     };
   }
+  @Get('/about')
+  @Render('about')
   abount(): any {
     const viewData = [];
+    viewData['title'] = 'Abount us - Online Store';
+    viewData['subtitle'] = 'Abount us';
     viewData['description'] = 'This is an abount page...';
     viewData['author'] = 'Developed by: NestJS';
-    const data = 'Abount us-Online Store';
     return {
-      title: data,
-      subtitle: 'Abount us',
       viewData: viewData,
     };
   }
